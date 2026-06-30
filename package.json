@@ -5,6 +5,8 @@
   "description": "Local Unreal Engine mod pack manager",
   "main": "server.js",
   "scripts": {
+    "build": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/tauri-build.ps1",
+    "dev": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/tauri-dev.ps1",
     "start": "node server.js",
     "test": "node --test test/*.test.js",
     "tauri:dev": "powershell -NoProfile -ExecutionPolicy Bypass -File scripts/tauri-dev.ps1",

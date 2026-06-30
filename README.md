@@ -21,8 +21,8 @@ Then, after making changes, you can use this cheat sheet to build/test
 
 ```
 npm test  # sanity check your changes
-npx tauri dev    # run the app
-npx tauri build  # build the exe
+npm run dev    # run the app
+npm run build  # build the exe and installer
 ```
 
 ### Beginners Welcome
