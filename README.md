@@ -27,7 +27,7 @@ npx tauri build  # build the exe
 
 ### Beginners Welcome
 
-If you're not a coder, that's OK. You can use [ChatGPT](https://openai.com/codex/) to guide you through this.
+If you're not a coder, that's OK. You can use [ChatGPT or Codex CLI](https://openai.com/codex/) to guide you through this.
 Please use GPT 5.5 or higher to get good results.
 
 Feel free to use other models and tools like GLM 5.2 and OpenCode.
