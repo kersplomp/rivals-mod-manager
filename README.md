@@ -9,6 +9,9 @@ Hi! This is my mod manager for Marvel Rivals. I made it for myself, but if it wo
 3. Add some mod lists and drag mods into them
 4. Click apply to enable/disable your mod lists!
 
+<img width="1911" height="1265" alt="image" src="https://github.com/user-attachments/assets/46e8f98e-8833-49aa-948b-85a41523472a" />
+
+
 ## How to develop
 
 First:
@@ -31,8 +34,8 @@ If you're not a coder, that's OK. You can use [ChatGPT or Codex CLI](https://ope
 Please use GPT 5.5 or higher to get good results.
 
 Feel free to use other models and tools like GLM 5.2 and OpenCode.
-But I would personally avoid Claude, since unlike Codex CLI it is not open source!
+But I would personally avoid Claude, since unlike Codex CLI it is not open source.
 
 If you're a newbie to coding, I'd avoid sending a PR until you've had more experience 🙏
-If you're proud of something and want to share, submit a bug report with your prompt
+If you're proud of something and want to share, feel free to submit a bug report with your prompt
 instead of sending a PR.
