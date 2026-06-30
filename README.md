@@ -35,6 +35,7 @@ Please use GPT 5.5 or higher to get good results.
 
 Feel free to use other models and tools like GLM 5.2 and OpenCode.
 But I would personally avoid Claude, since unlike Codex CLI and OpenCode it is not open source.
+<!-- Also there are some Claude edgelords out there who harrass anyone that doesn't use Claude, and I don't like that vibe. YMMV. -->
 
 If you're a newbie to coding, I'd avoid sending a PR until you've had more experience 🙏
 If you're proud of something and want to share, feel free to submit a bug report with your prompt
