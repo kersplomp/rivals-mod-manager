@@ -13,7 +13,7 @@ Hi! This is my mod manager for Marvel Rivals. I made it for myself, but if it wo
 
 First:
 
-1. Download [git](https://git-scm.com/), (rust)[https://rust-lang.org/], [node.js](https://nodejs.org/en), and [7z](https://www.7-zip.org/).
+1. Download [git](https://git-scm.com/), [rust](https://rust-lang.org/), [node.js](https://nodejs.org/en), and [7z](https://www.7-zip.org/).
 2. Clone this repo
 3. Run `npm install`
 
