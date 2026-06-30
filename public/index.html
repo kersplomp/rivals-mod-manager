@@ -1,0 +1,78 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Unreal Mod Manager</title>
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <div id="app">
+    <header class="toolbar">
+      <div class="brand">
+        <span class="logo">UM</span>
+        <span>Unreal Mod Manager</span>
+      </div>
+      <button id="addFolderBtn" title="Add library folder">＋ Add Folder</button>
+      <button id="gameFolderBtn" title="Set game mods folder">▣ Game Folder</button>
+      <button id="scanBtn" title="Rescan folders">↻ Scan</button>
+      <span class="spacer"></span>
+      <div class="optionsHost">
+        <button id="optionsBtn" class="iconButton hamburgerButton" title="Options" aria-haspopup="true" aria-expanded="false">
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
+        <div id="optionsMenu" class="optionsMenu hidden" role="menu"></div>
+      </div>
+      <button id="dryRunBtn" class="secondary">Dry Run</button>
+      <button id="applyBtn" class="primary">Apply</button>
+    </header>
+    <main class="shell">
+      <aside class="sidebar">
+        <section>
+          <h2>Library</h2>
+          <div id="folderList" class="tree"></div>
+        </section>
+        <section>
+          <div class="sectionRow">
+            <h2>Mod Lists</h2>
+            <button id="newListBtn" class="iconButton" title="New mod list">＋</button>
+          </div>
+          <div id="listsGrid" class="listsGrid"></div>
+        </section>
+      </aside>
+      <div class="resizeHandle" data-resizer="left" title="Resize sidebar"></div>
+      <section class="workspace">
+        <div class="workspaceHeader">
+          <div>
+            <div id="workspaceCrumbs" class="breadcrumbs"></div>
+            <h1 id="workspaceTitle">Mod Folders</h1>
+            <p id="statusLine">Ready</p>
+          </div>
+          <label class="folderSearch" title="Search mod folders">
+            <span>Search</span>
+            <input id="modFolderSearch" type="search" placeholder="Filter mod folders">
+          </label>
+        </div>
+        <div id="modFolderGrid" class="modFolderGrid"></div>
+        <div id="folderDetailPanel" class="folderDetailPanel hidden"></div>
+        <div id="planPanel" class="planPanel hidden"></div>
+      </section>
+      <div class="resizeHandle" data-resizer="right" title="Resize preview panel"></div>
+      <aside class="preview">
+        <section>
+          <h2>Preview</h2>
+          <div id="previewMedia" class="previewMedia empty">Select a mod folder or pack</div>
+        </section>
+        <section>
+          <h2>Details</h2>
+          <div id="detailsPanel" class="details"></div>
+        </section>
+      </aside>
+    </main>
+  </div>
+  <script src="/media-src.js"></script>
+  <script src="/app.js"></script>
+</body>
+</html>

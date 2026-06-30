@@ -1,0 +1,23 @@
+# Dependencies
+node_modules/
+
+# Runtime state and caches
+data/
+cache/
+*.log
+.env
+.env.*
+
+# Build output
+src-tauri/target/
+src-tauri/gen/
+dist/
+build/
+
+# Packaged binaries/installers
+*.exe
+*.msi
+
+# OS/editor noise
+.DS_Store
+Thumbs.db
