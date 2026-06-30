@@ -50,3 +50,12 @@ test("Tauri backend exposes archive preview extraction", () => {
   assert.match(lib, /archive_preview/);
   assert.match(lib, /\/api\/archive-file\?archive=/);
 });
+
+test("reset config is wired through the app and Tauri backend", () => {
+  const app = fs.readFileSync(path.join(root, "public", "app.js"), "utf8");
+  const html = fs.readFileSync(path.join(root, "public", "index.html"), "utf8");
+  const lib = fs.readFileSync(path.join(root, "src-tauri", "src", "lib.rs"), "utf8");
+  assert.match(app, /\/api\/reset-config/);
+  assert.match(html, /resetConfigConfirm/);
+  assert.match(lib, /fn reset_config\(\) -> Result<State, String>/);
+});

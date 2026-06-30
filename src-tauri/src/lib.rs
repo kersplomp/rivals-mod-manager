@@ -21,6 +21,13 @@ const PREVIEW_EXTS: [&str; 10] = [
 const GENERIC_CONTAINER_NAMES: [&str; 7] =
     ["archive", "archives", "unzipped", "unzip", "extracted", "mods", "mod"];
 
+fn default_state() -> State {
+    State {
+        mod_lists: default_lists(),
+        ..Default::default()
+    }
+}
+
 #[derive(Clone, Default, Serialize, Deserialize)]
 #[serde(rename_all = "camelCase")]
 struct State {
@@ -1153,10 +1160,7 @@ fn load_state_inner() -> Result<State, String> {
             mod_lists: default_lists(),
             ..Default::default()
         })),
-        Err(_) => Ok(State {
-            mod_lists: default_lists(),
-            ..Default::default()
-        }),
+        Err(_) => Ok(default_state()),
     }
 }
 
@@ -1165,6 +1169,10 @@ fn save_state_inner(state: &State) -> Result<State, String> {
     validate_lists(&state.mod_lists)?;
     fs::write(state_file()?, serde_json::to_string_pretty(state).unwrap()).map_err(|e| e.to_string())?;
     Ok(state.clone())
+}
+
+fn reset_config_inner() -> Result<State, String> {
+    save_state_inner(&default_state())
 }
 
 fn import_config_inner() -> Result<State, String> {
@@ -1233,6 +1241,11 @@ fn save_state(state: State) -> Result<State, String> {
 }
 
 #[tauri::command]
+fn reset_config() -> Result<State, String> {
+    reset_config_inner()
+}
+
+#[tauri::command]
 fn pick_folder() -> Result<serde_json::Value, String> {
     let path = rfd::FileDialog::new()
         .pick_folder()
@@ -1289,6 +1302,7 @@ pub fn run() {
         .invoke_handler(tauri::generate_handler![
             get_state,
             save_state,
+            reset_config,
             pick_folder,
             scan,
             dry_run,

@@ -96,6 +96,10 @@ async function saveState(state) {
   return state;
 }
 
+async function resetState() {
+  return saveState(defaultState());
+}
+
 async function walkFiles(root) {
   const out = [];
   async function walk(dir) {
@@ -662,6 +666,7 @@ async function handleApi(req, res, url) {
       validateLists(state.modLists || []);
       return send(res, 200, await saveState(state));
     }
+    if (url.pathname === "/api/reset-config" && req.method === "POST") return send(res, 200, await resetState());
     if (url.pathname === "/api/pick-folder" && req.method === "POST") return send(res, 200, { path: await pickFolder() });
     if (url.pathname === "/api/scan" && req.method === "POST") {
       const state = await loadState();
@@ -741,6 +746,7 @@ async function start(port = process.env.PORT || 3859) {
 if (require.main === module) start();
 
 module.exports = {
+  defaultState,
   scanLibraries,
   resolveEnabledPacks,
   validateLists,
@@ -753,6 +759,7 @@ module.exports = {
   humanPackName,
   parse7zList,
   loadState,
+  resetState,
   saveState,
   start,
   CACHE

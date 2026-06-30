@@ -23,6 +23,7 @@ async function api(path, options = {}) {
     const body = options.body ? JSON.parse(options.body) : {};
     if (path === "/api/state" && (!options.method || options.method === "GET")) return core.invoke("get_state");
     if (path === "/api/state" && options.method === "POST") return core.invoke("save_state", { state: body });
+    if (path === "/api/reset-config") return core.invoke("reset_config");
     if (path === "/api/pick-folder") return core.invoke("pick_folder");
     if (path === "/api/scan") return core.invoke("scan");
     if (path === "/api/dry-run") return core.invoke("dry_run");
@@ -388,6 +389,12 @@ function renderOptionsMenu() {
     exportButton.onclick = exportConfig;
     menu.append(exportButton);
   }
+  const resetButton = document.createElement("button");
+  resetButton.className = "optionAction dangerAction";
+  resetButton.type = "button";
+  resetButton.textContent = "Clear Config";
+  resetButton.onclick = openResetConfigModal;
+  menu.append(resetButton);
   for (const [key, definition] of Object.entries(optionDefinitions)) {
     const label = document.createElement("label");
     label.className = "optionRow";
@@ -426,6 +433,37 @@ async function exportConfig() {
     optionsMenuOpen = false;
     renderOptionsMenu();
     setStatus(result.path ? `Exported config to ${result.path}` : "Export cancelled.");
+  } catch (error) {
+    setStatus(error.message, true);
+  }
+}
+
+function openResetConfigModal() {
+  optionsMenuOpen = false;
+  renderOptionsMenu();
+  $("resetConfigConfirm").checked = false;
+  $("confirmResetConfigBtn").disabled = true;
+  $("resetConfigModal").classList.remove("hidden");
+  $("cancelResetConfigBtn").focus();
+}
+
+function closeResetConfigModal() {
+  $("resetConfigModal").classList.add("hidden");
+}
+
+async function resetConfig() {
+  try {
+    setStatus("Clearing config...");
+    state = await api("/api/reset-config", { method: "POST" });
+    ensureUiState();
+    state.selectedModFolderId = "";
+    state.selectedPackId = "";
+    localStorage.removeItem("umm.leftPanelWidth");
+    localStorage.removeItem("umm.rightPanelWidth");
+    closeResetConfigModal();
+    applyPanelWidths();
+    render();
+    setStatus("Config cleared.");
   } catch (error) {
     setStatus(error.message, true);
   }
@@ -717,6 +755,18 @@ document.addEventListener("click", (event) => {
   if (event.target.closest(".optionsHost")) return;
   optionsMenuOpen = false;
   renderOptionsMenu();
+});
+
+$("resetConfigConfirm").onchange = (event) => {
+  $("confirmResetConfigBtn").disabled = !event.target.checked;
+};
+$("cancelResetConfigBtn").onclick = closeResetConfigModal;
+$("confirmResetConfigBtn").onclick = resetConfig;
+$("resetConfigModal").onclick = (event) => {
+  if (event.target.id === "resetConfigModal") closeResetConfigModal();
+};
+document.addEventListener("keydown", (event) => {
+  if (event.key === "Escape" && !$("resetConfigModal").classList.contains("hidden")) closeResetConfigModal();
 });
 
 $("dryRunBtn").onclick = () => runPlan(false);

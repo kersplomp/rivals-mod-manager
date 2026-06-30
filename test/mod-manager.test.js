@@ -11,6 +11,7 @@ const {
   applyPlan,
   deleteSourcePreview,
   deleteModSource,
+  defaultState,
   parsePriority,
   humanPackName
 } = require("../server");
@@ -237,4 +238,13 @@ test("deleteModSource removes a folder-backed mod folder and refreshes scan", as
   assert.equal(result.preview.target, path.join(root, "Rogue Starlit Rebel"));
   assert.equal(result.state.scan.modFolders.length, 0);
   await assert.rejects(fs.stat(path.join(root, "Rogue Starlit Rebel")));
+});
+
+test("defaultState starts from an empty demo-ready config", () => {
+  const reset = defaultState();
+  assert.equal(reset.libraryFolders.length, 0);
+  assert.equal(reset.gameFolder, "");
+  assert.equal(reset.scan.modFolders.length, 0);
+  assert.equal(reset.modLists.length, 1);
+  assert.equal(reset.modLists[0].id, "favorites");
 });
