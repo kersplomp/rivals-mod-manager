@@ -4,10 +4,11 @@ Hi! This is my mod manager for Marvel Rivals. I made it for myself, but if it wo
 
 ## How to use
 
-1. Add your mod downloads folder (containing your raw mod archives or unzipped folders)
-2. Set the game folder to the ~mods directory for Marvel Rivals
-3. Add some mod lists and drag mods into them
-4. Click apply to enable/disable your mod lists!
+1. Install [7z](https://www.7-zip.org/).
+2. Click "Add Folder" and point it to your mod downloads folder containing mod archives or folders.
+3. Set the game folder to the ~mods directory for Marvel Rivals
+4. Add some mod lists and drag mods into them
+5. Click apply to enable/disable your mod lists!
 
 <img width="1911" height="1265" alt="image" src="https://github.com/user-attachments/assets/46e8f98e-8833-49aa-948b-85a41523472a" />
 
